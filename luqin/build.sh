@@ -5,5 +5,5 @@
 # Licensed under MIT.
 #
 version="v0.0.0"
-go build -ldflags="-s -w" -o /home/xuan/ccal/luqin/luqin-$version .
-GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o /home/xuan/ccal/luqin/luqin-$version.exe .
+go build -ldflags="-s -w" -o ./luqin-$version .
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w" -o ./luqin-$version.exe .
