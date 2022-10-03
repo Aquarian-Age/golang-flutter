@@ -47,14 +47,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   ClientData? clientData; //声明?
-  static const url = "http://localhost:6714";
+  static const url = "http://192.168.199.215:6900"; // android: 192.168.199.136
 
 // GET 点击第二页面自动显示GET内容
   getInfo() async {
     final client = http.Client();
     final request = http.Request('GET', Uri.parse("$url/info"))..followRedirects = false;
     final response = await client.send(request);
-
+    print(response.stream);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final resp = await http.get(Uri.parse('$url/info'));
       clientData = ClientData.fromJson(jsonDecode(resp.body));

@@ -23,8 +23,8 @@ type ClientData struct {
 func main() {
 	//http.HandleFunc("/", home)
 	http.HandleFunc("/info", info)
-	fmt.Println("serve @ localhost:6714")
-	err := http.ListenAndServe(":6714", nil)
+	fmt.Println("serve @ 0.0.0.0:6900")
+	err := http.ListenAndServe("192.168.199.215:6900", nil)
 	if err != nil {
 		log.Println(err)
 	}
@@ -34,6 +34,23 @@ func info(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
 		fmt.Printf("%s %s\n", r.URL.Path, r.Method)
+		// d := time.Duration(time.Second * 1) //三分钟
+		// timer := time.NewTimer(d)
+		// for {
+		// 	timer.Reset(d)
+		// 	select {
+		// 	case tx := <-timer.C:
+		// 		fmt.Println(t.String())
+		// 		t = tx
+		// 		w.Header().Set("content-type", "application/json; charset=utf-8")
+		// 		var clientData ClientData
+		// 		clientData.Times = t.Format(layout)
+		// 		clientData.Info = "infos"
+		// 		json.NewEncoder(w).Encode(clientData)
+		// 	}
+		// }
+		//fmt.Println("t:", t.String())
+
 		gzo := gz.NewTMGanZhi(t.Year(), int(t.Month()), t.Day(), t.Hour(), t.Minute())
 		info := gzo.Info()
 		infos := info.String()
