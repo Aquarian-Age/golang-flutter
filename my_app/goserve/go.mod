@@ -2,12 +2,7 @@ module serve
 
 go 1.19
 
-replace github.com/Aquarian-Age/sjqm/v3 => ../../../../src/source/sjqm/v3/
-
-replace liangzi.local/xa => /home/xuan/src/source/xa/
-
 require (
-	github.com/Aquarian-Age/sjqm/v3 v3.0.0-00010101000000-000000000000
 	github.com/Aquarian-Age/xa v1.1.6
 )
 
