@@ -1,11 +1,33 @@
 import 'dart:core';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/page_info.dart';
 import 'package:my_app/page_jqh.dart';
+import 'package:window_size/window_size.dart';
 
 void main() {
+  setupWindow();
   runApp(const MyApp());
+}
+
+const double windowWidth = 620;
+const double windowHeight = 800;
+void setupWindow() {
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+    WidgetsFlutterBinding.ensureInitialized(); //调用 [runApp] 之前初始化绑定
+    setWindowMinSize(const Size(windowWidth, windowHeight));
+    setWindowMaxSize(const Size(windowWidth, windowHeight));
+    getCurrentScreen().then((screen) {
+      //启动居中?  设置包含此 Flutter 实例的窗口的框架
+      setWindowFrame(Rect.fromCenter(
+        center: screen!.frame.center,
+        width: windowWidth,
+        height: windowHeight,
+      ));
+    });
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +54,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    print(size);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

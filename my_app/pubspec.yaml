@@ -31,16 +31,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # 时间选择器
   flutter_my_picker_null_safety:
     git: https://github.com/InTheClodus/flutter_my_picker_null_safety.git
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # http
   http: ^0.13.5
+  # 格式化输出
   sprintf: ^7.0.0
+  # 下拉选择/时间选择器
   flutter_picker: ^2.0.5
-
+  # plugin is not yet part of the flutter framework
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
 dev_dependencies:
   flutter_test:
     sdk: flutter
