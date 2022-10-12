@@ -73,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final size = MediaQuery.of(context).size;
     print("屏幕宽/高: $size"); //宽度 高度
 
-    getxy(size.width, size.height);
+    //getxy(size.width, size.height);
+    getxy(size.width - 20, size.height - 20); //减去20在四维度角文本可以显示在圆内
     return Stack(
       children: [
         SizedBox(
