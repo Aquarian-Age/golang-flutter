@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment[zh_CN]=Linux时钟
+Comment=clock-flutter
+Exec=/opt/clock-flutter/clock-flutter &
+GenericName[zh_CN]=Linux时钟
+GenericName=clock-flutter
+Icon=/opt/clock-flutter/clock.png
+MimeType=
+Name[zh_CN]=Linux时钟
+Name=clock-flutter
+Path=
+Terminal=false
+TerminalOptions=
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=
