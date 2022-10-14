@@ -77,7 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text(
             "${(i % 15) == 0 && index < 24 ? list[index] : "-"}",
             //"${x1.toInt()},${y1.toInt()}", //left:x1 top:y1
-            style: const TextStyle(fontSize: 10, color: Colors.lightBlue),
+            style: const TextStyle(
+                fontSize: 10,
+                color: Colors.lightBlue,
+                decoration: TextDecoration.none),
           )));
     }
     setState(() {

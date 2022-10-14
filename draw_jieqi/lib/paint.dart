@@ -19,7 +19,7 @@ class MyPainter extends CustomPainter {
     var c = Offset(size.width / 2, size.height / 2); //圆心偏移
     double radius = min(size.width / 2, size.height / 2); //半径
     canvas.drawCircle(c, radius, paint);
-    double sp = 40.0;
+    // double sp = 40.0;
     // 2层圆
     var paint2 = Paint()
       ..isAntiAlias = true
@@ -27,7 +27,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..color = Colors.blue
       ..invertColors = false;
-    double radius2 = radius - sp;
+    double radius2 = radius * 0.8; // - sp;
     canvas.drawCircle(c, radius2, paint2);
     // 3层圆
     var paint3 = Paint()
@@ -36,7 +36,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..color = Colors.blue
       ..invertColors = false;
-    double radius3 = radius - sp * 2;
+    double radius3 = radius * 0.6; //- sp * 2;
     canvas.drawCircle(c, radius3, paint3);
     // 3层圆
     var paint4 = Paint()
@@ -45,7 +45,7 @@ class MyPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..color = Colors.blue
       ..invertColors = false;
-    double radius4 = radius - sp * 3;
+    double radius4 = radius * 0.4; //- sp * 3;
     canvas.drawCircle(c, radius4, paint4);
 
     //角度线
