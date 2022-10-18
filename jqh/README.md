@@ -1,6 +1,17 @@
 # jqh
 
-![](../jqh/image/image.png)
+![](image/image4.png)
+
+## build windows
+pubspec.yaml
+```yaml
+ msix: ^3.6.6
+```
+
+```powershell
+ flutter pub add --dev msix
+ flutter pub run msix:create
+```
 
 ## Getting Started
 
