@@ -36,7 +36,22 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
+  #
+  http: ^0.13.5
+  # 格式化输出
+  sprintf: ^7.0.0
+  # 时间选择器
+  flutter_my_picker_null_safety:
+    git: https://github.com/InTheClodus/flutter_my_picker_null_safety.git
+  # 下拉寄宫/时间选择器
+  flutter_picker: ^2.0.5
+  # 打开外部应用
+  url_launcher: ^6.1.6
+  # 窗口管理
+  window_manager:
+    git:
+      url: https://github.com/leanflutter/window_manager.git
+      ref: main
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -89,3 +104,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+###### windows
+#   msix: ^3.6.6
+# # windows系统打包配置
+# msix_config:
+#   display_name: JQH
+#   msix_version: 1.0.0.1
+#   # logo_path: C:\path\to\logo.png
