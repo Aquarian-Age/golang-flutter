@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  date_format:
+    dependency: "direct main"
+    description:
+      name: date_format
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.7"
   dbus:
     dependency: transitive
     description:
@@ -254,6 +261,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  progresso:
+    dependency: "direct main"
+    description:
+      name: progresso
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0"
   provider:
     dependency: "direct main"
     description:

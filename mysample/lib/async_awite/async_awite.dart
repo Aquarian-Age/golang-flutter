@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -20,31 +21,93 @@ class _ExampleAsyncAwiteState extends State<ExampleAsyncAwite> {
     super.initState();
   }
 
+  // double n = 0.0;
+  double value = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        const Text(
-          'example async awite',
-          style: TextStyle(decoration: TextDecoration.none), //去除下面黄线
-        ),
-        FutureBuilder(
-          future: getinfo(),
-          builder: ((context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Text('Loading');
-            }
-            return Text(
-              'Loading Complete: ${snapshot.data}',
-              style: Theme.of(context).textTheme.bodyMedium,
-            );
-          }),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          const Text(
+            'example async awite',
+            style: TextStyle(decoration: TextDecoration.none, fontSize: 16, color: Colors.blue), //去除下面黄线
+          ),
+          FutureBuilder(
+            future: getinfo(),
+            builder: ((context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Text('Loading');
+              }
+              return Text(
+                'Loading Complete: ${snapshot.data}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              );
+            }),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            child: const Text("Upload File"),
+            onPressed: () {
+              value = 0;
+              uploadFile();
+              // setState(() {});
+            },
+          ),
+
+          CupertinoActivityIndicator.partiallyRevealed(
+            progress: value,
+            radius: 30,
+          )
+          // ///
+          // const CupertinoActivityIndicator(
+          //   animating: true,
+          //   // color: Colors.red,
+          // ),
+          // SizedBox(height: 30),
+          // Text('Default'),
+          // //////
+          // Divider(),
+          // TextButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       n = 1;
+          //     });
+          //   },
+          //   child: Text('显示动画'),
+          // ),
+          // AnimatedOpacity(
+          //   opacity: n,
+          //   duration: Duration(seconds: 3),
+          //   child: Column(
+          //     // ignore: prefer_const_literals_to_create_immutables
+          //     children: [
+          //       Text('Type: Owl'),
+          //       Text('Age: 39'),
+          //       Text('Employment: None'),
+          //     ],
+          //   ),
+          // ),
+        ],
+      ),
     );
+  }
+
+  void uploadFile() {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        if (value == 1) {
+          timer.cancel();
+        } else {
+          value = value + 0.2;
+        }
+      });
+    });
   }
 }
 

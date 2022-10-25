@@ -51,6 +51,11 @@ dependencies:
   network_info_plus: ^3.0.1
   # 格式化输出
   sprintf: ^7.0.0
+  # 
+  date_format: ^2.0.7
+  # 进度条
+  progresso: ^0.3.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

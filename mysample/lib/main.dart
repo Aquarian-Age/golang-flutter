@@ -6,8 +6,10 @@ import 'package:mysample/widgets/add_item_to_listview.dart';
 import 'package:mysample/widgets/custom_painter.dart';
 import 'package:mysample/widgets/form.dart';
 import 'package:mysample/widgets/gestureDetector.dart';
+import 'package:mysample/widgets/progress.dart';
 import 'package:mysample/widgets/richtext.dart';
 
+import 'http/http.dart';
 import 'widgets/example_args.dart';
 
 void main() => runApp(const MyApp());
@@ -97,7 +99,7 @@ class FlutterExample extends StatelessWidget {
           ),
           ListTile(
             title: const Text('async'),
-            subtitle: const Text('async awite  FutureBuilder()'),
+            subtitle: const Text('async awite  FutureBuilder()  AnimatedOpacity() 动画 CupertinoActivityIndicator()旋转等待'),
             onTap: () {
               Navigator.push(
                 context,
@@ -107,6 +109,21 @@ class FlutterExample extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: const Text('http future'),
+            subtitle: const Text('get post请求 async异步 FutureBuild()'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ExampleHttpPage()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('progress'),
+            subtitle: const Text('进度条'),
+            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ExampleProgeress())),
+          )
         ],
       ),
     );
