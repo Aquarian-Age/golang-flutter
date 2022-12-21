@@ -1,0 +1,93 @@
+---------------------on ios 
+
+----arm架构
+
+export CFLAGS="-arch arm64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphoneos --show-sdk-path) 
+export CGO_LDFLAGS="-arch arm64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphoneos --show-sdk-path)  
+CGO_ENABLED=1 GOARCH=arm64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags ios -ldflags=-w -trimpath -v -o "testiphone.a" -buildmode c-archive
+
+-----x86架构
+
+export CFLAGS="-arch x86_64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphonesimulator --show-sdk-path) 
+export CGO_LDFLAGS="-arch x86_64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphonesimulator --show-sdk-path) 
+CGO_ENABLED=1 GOARCH=amd64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags ios -ldflags=-w -trimpath -v -o "testsimulator.a" -buildmode c-archive
+
+
+
+
+
+
+#!/bin/sh
+export LANG=en_US.UTF-8
+baseDir=$(cd "$(dirname "$0")"; pwd)
+ 
+rm -f testsimulator.a
+rm -f testiphone.a
+rm -f test.a
+rm -f test.h
+rm -f testiphone.h
+rm -f testsimulator.h
+ 
+export CFLAGS="-arch arm64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphoneos --show-sdk-path) 
+export CGO_LDFLAGS="-arch arm64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphoneos --show-sdk-path)  
+CGO_ENABLED=1 GOARCH=arm64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags ios -ldflags=-w -trimpath -v -o "testiphone.a" -buildmode c-archive
+ 
+cp ${baseDir}/testiphone.h ${baseDir}/test.h
+ 
+export CFLAGS="-arch x86_64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphonesimulator --show-sdk-path) 
+export CGO_LDFLAGS="-arch x86_64 -miphoneos-version-min=9.0 -isysroot "$(xcrun -sdk iphonesimulator --show-sdk-path) 
+CGO_ENABLED=1 GOARCH=amd64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags ios -ldflags=-w -trimpath -v -o "testsimulator.a" -buildmode c-archive
+ 
+lipo -create  ${baseDir}/testiphone.a ${baseDir}/testsimulator.a -output ${baseDir}/test.a
+lipo -info ${baseDir}/test.a
+
+
+
+
+-----------------on macos 
+
+export CFLAGS="-mmacosx-version-min=10.9 -isysroot "$(xcrun -sdk macosx --show-sdk-path) 
+export CGO_LDFLAGS="-mmacosx-version-min=10.9 -isysroot "$(xcrun -sdk macosx --show-sdk-path)  
+CGO_ENABLED=1 GOARCH=amd64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags macosx -ldflags=-w -trimpath -v -o "test.a" -buildmode c-archive
+#CGO_ENABLED=1 GOARCH=amd64 GOOS=darwin CC="clang $CFLAGS $CGO_LDFLAGS" go build -tags macosx -ldflags=-w -trimpath -v -o "${OUTPUT}/libuukcp.dylib" -buildmode c-shared
+
+
+
+
+
+
+
+--------------------on windows os 
+
+
+SET CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ GOOS=windows GOARCH=amd64
+
+go build -o test.dll -buildmode=c-shared test.go
+
+
+
+
+build.bat
+@echo off
+ 
+if exist output rd /s /q output
+md output
+md output\x86
+md output\x86_64
+ 
+setlocal
+set TMP_PATH=%PATH%
+ 
+:build
+	set CGO_ENABLED=1
+	set CGO_CFLAGS=-O3 -Wall -Wno-unused-function -Wno-switch -std=gnu11 -DWINVER=0x0601
+	call :build_plat 386 32 x86
+	call :build_plat amd64 64 x86_64
+	goto :eof
+:build_plat
+	set GOARCH=%~1
+	set PATH=C:\mingw\mingw%~2\bin;%TMP_PATH%
+	go build -buildmode=c-shared -ldflags="-w -s" -trimpath -v -o output\%~3\uukcp.dll
+
+
+

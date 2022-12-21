@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "f0187dd4bb6ddfaf3cb29da3fa6f1d143f36ea189962b277815ca6c81168a368"
+build_start_time: [1670984290, 2252101]
+build_end_time: [1670984290, 180637836]
+inputs:
+  "/Users/liangzi/goffi/ios/Runner/AppDelegate.swift": !private [1666331081, 894943237]
